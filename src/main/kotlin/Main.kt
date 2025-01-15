@@ -36,15 +36,6 @@ fun task3() {
     val isLoyalCustomer = true
     val amount = 10004
     var result = 0
-//    if (amount in 0..1_000) {
-//        result = amount
-//    } else if (amount in 1_001..10_000) {
-//        result = amount - 100
-//    } else if (amount > 10_000) {
-//        result = amount - (amount * 5 / 100)
-//    } else {
-//        result = 0
-//    }
 
     when (amount) {
         in 0..1_000 -> result = amount
