@@ -6,6 +6,7 @@ fun main() {
     task3()
 }
 
+// Задача 1 - Денежные переводы
 fun task1() {
     val amount = 1200
 
@@ -21,6 +22,7 @@ fun task1() {
     println("Комиссия за перевод составит $fee руб.")
 }
 
+// Задача 2 - Люди/Человеки
 fun task2() {
     val likes = 31
 
@@ -32,6 +34,7 @@ fun task2() {
     println("Понравилось $likes $result")
 }
 
+// Задача 3 - Меломан
 fun task3() {
     val isLoyalCustomer = true
     val amount = 10004
