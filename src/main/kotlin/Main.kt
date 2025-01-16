@@ -3,7 +3,7 @@ package ru.netology
 import kotlin.math.max
 
 fun main() {
-    task3()
+    task2()
 }
 
 // Задача 1 - Денежные переводы
@@ -24,12 +24,13 @@ fun task1() {
 
 // Задача 2 - Люди/Человеки
 fun task2() {
-    val likes = 31
+    val likes = 11
 
     val single = "человеку"
     val plural = "людям"
 
-    val result = if (likes.toString().last() == '1') single else plural
+    val likesString = likes.toString()
+    val result = if (likesString.last() == '1' && likesString != "11") single else plural
 
     println("Понравилось $likes $result")
 }
