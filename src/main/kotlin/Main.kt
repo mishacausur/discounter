@@ -24,13 +24,13 @@ fun task1() {
 
 // Задача 2 - Люди/Человеки
 fun task2() {
-    val likes = 11
+    val likes = 1011
 
     val single = "человеку"
     val plural = "людям"
 
     val likesString = likes.toString()
-    val result = if (likesString.last() == '1' && likesString != "11") single else plural
+    val result = if (likesString.last() == '1' && likesString.takeLast(2) != "11") single else plural
 
     println("Понравилось $likes $result")
 }
