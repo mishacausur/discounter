@@ -1,10 +1,10 @@
 package ru.netology
 
 import kotlin.math.max
-import kotlin.math.min
 
 fun main() {
-    println(agoToText(90921))
+    //println(agoToText(90921))
+    task2()
 }
 
 // Задача 1 - Когда собеседник был онлайн
@@ -37,14 +37,51 @@ fun extractHour(hours: Int): String = when {
 }
 
 // Задача 2 - Разная комиссия
+
+enum class CardType {
+    MIR, VISA, MASTERCARD
+}
+
 fun task2() {
-    val likes = 11
+    val card = CardType.MASTERCARD
+    val dailyLimit = 150_000
+    val monthLimit = 600_000
 
-    val single = "человеку"
-    val plural = "людям"
+    var dailyTransferSum = 0
+    var monthTransferSum = 0
+    var cardBalance = 500_000
+    val amount = 150_000
 
-    val likesString = likes.toString()
-    val result = if (likesString.last() == '1' && likesString != "11") single else plural
+    if ((dailyTransferSum + amount) > dailyLimit || (monthTransferSum + amount) > monthLimit) {
+        println("Превышен лимит переводов")
+    } else if (cardBalance - amount < 0) {
+        println("Недостаточно средств для соверешения перевода")
+    } else {
+        val commisiion = calculateCommission(card, monthTransferSum, amount)
+        dailyTransferSum += amount
+        monthTransferSum += amount
+        cardBalance -= (amount + commisiion)
+        println("Совершен перевод на сумму ${amount} руб., комиссия за перевод составила ${commisiion} руб.")
+    }
+}
 
-    println("Понравилось $likes $result")
+fun calculateCommission(cardType: CardType, pastTransferAmount: Int, amount: Int): Int {
+    when (cardType) {
+        CardType.MIR -> return 0
+        CardType.VISA -> return max(((amount * 0.75) / 100).toInt(), 35)
+        CardType.MASTERCARD -> return calculateMasterCardCommission(pastTransferAmount, amount)
+    }
+}
+
+fun calculateMasterCardCommission(pastTransferAmount: Int, amount: Int): Int {
+    val limit = 75_000
+    if (pastTransferAmount > limit) {
+        return getMCCommission(amount).toInt()
+    } else {
+        return getMCCommission(amount - limit).toInt()
+    }
+}
+
+fun getMCCommission(amount: Int): Double {
+    return ((amount * 0.6) / 100) + 20
 }
