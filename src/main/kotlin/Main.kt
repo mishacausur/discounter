@@ -75,13 +75,14 @@ fun calculateCommission(cardType: CardType = CardType.MIR, pastTransferAmount: I
 
 fun calculateMasterCardCommission(pastTransferAmount: Int, amount: Int): Int {
     val limit = 75_000
-    if (pastTransferAmount > limit) {
-        return getMCCommission(amount).toInt()
-    } else if ((pastTransferAmount + amount) > limit) {
-        val residue = limit - pastTransferAmount
-        return getMCCommission(amount - residue).toInt()
-    } else {
-        return getMCCommission(amount - limit).toInt()
+    when {
+        pastTransferAmount > limit -> return getMCCommission(amount).toInt()
+        (pastTransferAmount + amount) > limit -> {
+            val residue = limit - pastTransferAmount
+            return getMCCommission(amount - residue).toInt()
+        }
+
+        else -> return getMCCommission(amount - limit).toInt()
     }
 }
 
