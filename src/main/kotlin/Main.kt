@@ -1,9 +1,10 @@
 package ru.netology
 
+import kotlin.math.abs
 import kotlin.math.max
 
 fun main() {
-    //println(agoToText(90921))
+    //println(agoToText(720))
     task2()
 }
 
@@ -23,14 +24,14 @@ fun agoToText(seconds: Int): String {
 }
 
 fun extractMinutes(minutes: Int): String = when {
-    minutes.toString().takeLast(2) == "11" -> "${minutes} минут"
+    arrayOf("11", "12", "13", "14").contains(minutes.toString().takeLast(2)) -> "${minutes} минут"
     minutes.toString().last() == '1' -> "${minutes} минуту"
     minutes % 10 in 2..4 -> "${minutes} минуты"
     else -> "${minutes} минут"
 }
 
 fun extractHour(hours: Int): String = when {
-    hours.toString().takeLast(2) == "11" -> "${hours} часов"
+    arrayOf("11", "12", "13", "14").contains(hours.toString().takeLast(2)) -> "${hours} часов"
     hours.toString().last() == '1' -> "${hours} час"
     hours % 10 in 2..4 -> "${hours} часа"
     else -> "${hours} часов"
@@ -47,9 +48,9 @@ fun task2() {
     val monthLimit = 600_000
 
     var dailyTransferSum = 0
-    var monthTransferSum = 0
+    var monthTransferSum = 120_000
     var cardBalance = 500_000
-    val amount = 150_000
+    val amount = 100_000
 
     if ((dailyTransferSum + amount) > dailyLimit || (monthTransferSum + amount) > monthLimit) {
         println("Превышен лимит переводов")
@@ -64,7 +65,7 @@ fun task2() {
     }
 }
 
-fun calculateCommission(cardType: CardType, pastTransferAmount: Int, amount: Int): Int {
+fun calculateCommission(cardType: CardType = CardType.MIR, pastTransferAmount: Int = 0, amount: Int): Int {
     when (cardType) {
         CardType.MIR -> return 0
         CardType.VISA -> return max(((amount * 0.75) / 100).toInt(), 35)
@@ -76,11 +77,14 @@ fun calculateMasterCardCommission(pastTransferAmount: Int, amount: Int): Int {
     val limit = 75_000
     if (pastTransferAmount > limit) {
         return getMCCommission(amount).toInt()
+    } else if ((pastTransferAmount + amount) > limit) {
+        val residue = limit - pastTransferAmount
+        return getMCCommission(amount - residue).toInt()
     } else {
         return getMCCommission(amount - limit).toInt()
     }
 }
 
 fun getMCCommission(amount: Int): Double {
-    return ((amount * 0.6) / 100) + 20
+    return ((abs(amount) * 0.6) / 100) + 20
 }
