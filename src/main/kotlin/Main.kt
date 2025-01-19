@@ -37,7 +37,6 @@ fun extractHour(hours: Int): String = when {
 }
 
 // Задача 2 - Разная комиссия
-
 enum class CardType {
     MIR, VISA, MASTERCARD
 }
