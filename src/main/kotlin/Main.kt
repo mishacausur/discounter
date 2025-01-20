@@ -82,7 +82,7 @@ fun calculateMasterCardCommission(pastTransferAmount: Int, amount: Int): Int {
             return getMCCommission(amount - residue).toInt()
         }
 
-        else -> return getMCCommission(amount - limit).toInt()
+        else -> return 0
     }
 }
 
