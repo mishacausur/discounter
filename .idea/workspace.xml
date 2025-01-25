@@ -4,17 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="556467bf-6859-40a8-a608-356abbb1ffc0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-    </list>
+    <list default="true" id="556467bf-6859-40a8-a608-356abbb1ffc0" name="Changes" comment="fixes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "mishacausur"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/mishacausur/discounter.git",
+    "accountId": "8fb6b79d-7365-42a4-8990-78d4baade0d0"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 1
 }]]></component>
@@ -26,11 +41,28 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build discounter.executor": "Run",
+    "Kotlin.MainKt.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "task2",
     "kotlin-language-version-configured": "true",
     "onboarding.tips.debug.path": "/Users/mishacausur/Desktop/Java/discounter/src/main/kotlin/Main.kt"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.netology.MainKt" />
+      <module name="discounter.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotlin.MainKt" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -40,17 +72,133 @@
       <option name="presentableId" value="Default" />
       <updated>1736870976941</updated>
     </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <option name="closed" value="true" />
+      <created>1736872014165</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1736872014165</updated>
+    </task>
+    <task id="LOCAL-00002" summary="task 1 has been extracted into single method">
+      <option name="closed" value="true" />
+      <created>1736872064582</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1736872064582</updated>
+    </task>
+    <task id="LOCAL-00003" summary="task 2">
+      <option name="closed" value="true" />
+      <created>1736872522153</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1736872522153</updated>
+    </task>
+    <task id="LOCAL-00004" summary="task 3 done">
+      <option name="closed" value="true" />
+      <created>1736959896006</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1736959896006</updated>
+    </task>
+    <task id="LOCAL-00005" summary="deleted commented">
+      <option name="closed" value="true" />
+      <created>1736959942312</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736959942312</updated>
+    </task>
+    <task id="LOCAL-00006" summary="commented">
+      <option name="closed" value="true" />
+      <created>1736960252915</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1736960252915</updated>
+    </task>
+    <task id="LOCAL-00007" summary="task 2 fixes">
+      <option name="closed" value="true" />
+      <created>1737031950817</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737031950817</updated>
+    </task>
+    <task id="LOCAL-00008" summary="task 1 done">
+      <option name="closed" value="true" />
+      <created>1737214936819</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737214936819</updated>
+    </task>
+    <task id="LOCAL-00009" summary="more fix for task 1">
+      <option name="closed" value="true" />
+      <created>1737215163107</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1737215163107</updated>
+    </task>
+    <task id="LOCAL-00010" summary="task 2 done">
+      <option name="closed" value="true" />
+      <created>1737279792462</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737279792462</updated>
+    </task>
+    <task id="LOCAL-00011" summary="task 2 done">
+      <option name="closed" value="true" />
+      <created>1737279830932</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1737279830932</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fixes">
+      <option name="closed" value="true" />
+      <created>1737285069461</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1737285069461</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fixes">
+      <option name="closed" value="true" />
+      <created>1737285148287</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1737285148287</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixes">
+      <option name="closed" value="true" />
+      <created>1737399240058</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1737399240058</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/Main.kt</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit" />
+    <MESSAGE value="task 1 has been extracted into single method" />
+    <MESSAGE value="task 2" />
+    <MESSAGE value="task 3 done" />
+    <MESSAGE value="deleted commented" />
+    <MESSAGE value="commented" />
+    <MESSAGE value="task 2 fixes" />
+    <MESSAGE value="task 1 done" />
+    <MESSAGE value="more fix for task 1" />
+    <MESSAGE value="task 2 done" />
+    <MESSAGE value="fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
   </component>
 </project>
