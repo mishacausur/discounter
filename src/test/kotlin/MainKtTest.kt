@@ -20,6 +20,13 @@ class MainKtTest {
         assertEquals(commission, result)
     }
 
+    @Test
+    fun calculateMasterCardLessLimit() {
+        val commission = 0 // 25_000 < 75_000 -> 0
+        val result = calculateCommission(CardType.MASTERCARD, amount = 25_000)
+        assertEquals(commission, result)
+    }
+
     // VISA
     @Test
     fun calculateVisaOverConstant() {
