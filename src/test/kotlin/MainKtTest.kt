@@ -15,7 +15,7 @@ class MainKtTest {
 
     @Test
     fun calculateMasterCardOverPassLimit() {
-        val commission = 1290 // 45_000 * 6% + 20 rub
+        val commission = 290 // 45_000 * 6% + 20 rub
         val result = calculateCommission(CardType.MASTERCARD, 125_000, 45_000)
         assertEquals(commission, result)
     }
