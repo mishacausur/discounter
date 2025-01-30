@@ -1,37 +1,56 @@
 package ru.netology
 
-import kotlin.math.abs
-import kotlin.math.max
+import java.util.function.BiPredicate
+
+data class Post(
+    val id: UInt,
+    val ownerId: UInt,
+    val date: Int,
+    val text: String,
+    val views: UInt,
+    val markedAsAds: Boolean,
+    val likes: UInt,
+    val canLike: Boolean,
+    val userLiked: Boolean,
+    val canPublish: Boolean,
+    val comments: Comments,
+)
+
+data class Comments(
+    val count: UInt,
+    val canPost: Boolean,
+    val canClose: Boolean,
+    val canOpen: Boolean
+)
+
+object WallService {
+    var id: UInt = 0u
+    var posts = emptyArray<Post>()
+
+    fun addPost(post: Post): Post {
+        id += 1u
+        val _post = post.copy(id = id)
+        posts += _post
+        return posts.last()
+    }
+
+    fun updatePost(post: Post): Boolean {
+        var result = false
+        for ((index, _post) in posts.withIndex()) {
+            if (_post.id == post.id) {
+                posts[index] = post
+                result = true
+            }
+        }
+       return result
+    }
+
+    fun reset() {
+        id = 0u
+        posts = emptyArray()
+    }
+}
 
 fun main() {
-    //task2()
-}
 
-enum class CardType {
-    MIR, VISA, MASTERCARD
-}
-
-fun calculateCommission(cardType: CardType = CardType.MIR, pastTransferAmount: Int = 0, amount: Int): Int {
-    when (cardType) {
-        CardType.MIR -> return 0
-        CardType.VISA -> return max(((amount * 0.75) / 100).toInt(), 35)
-        CardType.MASTERCARD -> return calculateMasterCardCommission(pastTransferAmount, amount)
-    }
-}
-
-fun calculateMasterCardCommission(pastTransferAmount: Int, amount: Int): Int {
-    val limit = 75_000
-    when {
-        pastTransferAmount > limit -> return getMCCommission(amount).toInt()
-        (pastTransferAmount + amount) > limit -> {
-            val residue = limit - pastTransferAmount
-            return getMCCommission(amount - residue).toInt()
-        }
-
-        else -> return 0
-    }
-}
-
-fun getMCCommission(amount: Int): Double {
-    return ((abs(amount) * 0.6) / 100) + 20
 }

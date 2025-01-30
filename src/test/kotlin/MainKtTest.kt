@@ -1,52 +1,61 @@
 import org.junit.Test
 import junit.framework.TestCase.assertEquals
-import ru.netology.CardType
-import ru.netology.calculateCommission
+import org.junit.Before
+import ru.netology.Comments
+import ru.netology.Post
+import ru.netology.WallService
 
 class MainKtTest {
 
-    // MASCTERCARD
-    @Test
-    fun calculateMasterCardOverLimit() {
-        val commission = 320 // 50_000 * 6% + 20 rub
-        val result = calculateCommission(CardType.MASTERCARD, amount = 125_000)
-        assertEquals(commission, result)
+    @Before
+    fun resetWallService() {
+        WallService.reset()
+    }
+
+    fun makeMock(id: UInt = 0u): Post {
+        return Post(
+            id,
+            111u,
+            1000,
+            "Hello there! hope you have a really beautiful day",
+            0u,
+            false,
+            0u,
+            false,
+            false,
+            false,
+            Comments(
+                0u,
+                false,
+                false,
+                false
+            ),
+        )
     }
 
     @Test
-    fun calculateMasterCardOverPassLimit() {
-        val commission = 290 // 45_000 * 6% + 20 rub
-        val result = calculateCommission(CardType.MASTERCARD, 125_000, 45_000)
-        assertEquals(commission, result)
+    fun testAddingPost() {
+        val resultId = 1u
+        assertEquals(resultId, WallService.addPost(makeMock()).id)
     }
 
     @Test
-    fun calculateMasterCardLessLimit() {
-        val commission = 0 // 25_000 < 75_000 -> 0
-        val result = calculateCommission(CardType.MASTERCARD, amount = 25_000)
-        assertEquals(commission, result)
-    }
+    fun testSuccessfullUpdatingPost() {
+        val post = makeMock()
+        WallService.addPost(post)
 
-    // VISA
-    @Test
-    fun calculateVisaOverConstant() {
-        val commission = 187 // 25_000 * 0.75% = 187
-        val result = calculateCommission(CardType.VISA, amount = 25_000)
-        assertEquals(commission, result)
+        val newPost = post.copy(id = 1u, views = 100u)
+        val update = WallService.updatePost(newPost)
+
+        assertEquals(true, update)
     }
 
     @Test
-    fun calculateVisaLEssConstant() {
-        val commission = 35 // 1_500 * 0.75% < 35 -> 35
-        val result = calculateCommission(CardType.VISA, amount = 1_500)
-        assertEquals(commission, result)
-    }
-
-    // MIR
-    @Test
-    fun calculateMir() {
-        val commission = 0
-        val result = calculateCommission(CardType.MIR, amount = 10_500)
-        assertEquals(commission, result)
+    fun testFailedUpdatingPost() {
+        val post = makeMock(100u)
+        WallService.addPost(post)
+        val newPost = makeMock()
+        val update = WallService.updatePost(newPost)
+        assertEquals(false, update)
     }
 }
