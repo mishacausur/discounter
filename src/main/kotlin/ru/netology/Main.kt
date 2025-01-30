@@ -23,9 +23,9 @@ data class Comments(
     val canOpen: Boolean
 )
 
-object Wall {
+object WallService {
     var id: UInt = 0u
-    private var posts = emptyArray<Post>()
+    var posts = emptyArray<Post>()
 
     fun addPost(post: Post): Post {
         id += 1u
@@ -35,13 +35,19 @@ object Wall {
     }
 
     fun updatePost(post: Post): Boolean {
+        var result = false
         for ((index, _post) in posts.withIndex()) {
             if (_post.id == post.id) {
                 posts[index] = post
-                return true
+                result = true
             }
         }
-        return false
+       return result
+    }
+
+    fun reset() {
+        id = 0u
+        posts = emptyArray()
     }
 }
 
