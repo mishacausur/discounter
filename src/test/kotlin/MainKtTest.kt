@@ -1,15 +1,27 @@
 import org.junit.Test
 import junit.framework.TestCase.assertEquals
 import org.junit.Before
-import ru.netology.Comments
-import ru.netology.Post
-import ru.netology.WallService
+import ru.netology.*
 
 class MainKtTest {
 
     @Before
     fun resetWallService() {
         WallService.reset()
+    }
+
+    fun mockAttachment(): Array<Attachment> {
+        val photo = PhotoAttachment(
+            photo = Photo(1u, 1u, 1u, null
+
+            )
+        )
+
+        val sticker = StickerAttachment(
+            sticker = Sticker(500u, 510u, false)
+        )
+
+        return arrayOf(photo, sticker)
     }
 
     fun makeMock(id: UInt = 0u): Post {
@@ -30,6 +42,7 @@ class MainKtTest {
                 false,
                 false
             ),
+            mockAttachment()
         )
     }
 
