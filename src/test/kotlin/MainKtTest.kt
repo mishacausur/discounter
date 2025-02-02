@@ -11,15 +11,10 @@ class MainKtTest {
     }
 
     fun mockAttachment(): Array<Attachment> {
-        val photo = PhotoAttachment(
-            photo = Photo(1u, 1u, 1u, null
-
-            )
+        val photo = Photo(1u, 1u, 1u, null
         )
 
-        val sticker = StickerAttachment(
-            sticker = Sticker(500u, 510u, false)
-        )
+        val sticker = Sticker(500u, 510u, false)
 
         return arrayOf(photo, sticker)
     }
