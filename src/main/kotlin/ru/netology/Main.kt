@@ -7,20 +7,21 @@ data class Post(
     val ownerId: UInt,
     val date: Int,
     val text: String,
-    val views: UInt,
-    val markedAsAds: Boolean,
+    val views: UInt?,
+    val markedAsAds: Boolean?,
     val likes: UInt,
     val canLike: Boolean,
     val userLiked: Boolean,
     val canPublish: Boolean,
-    val comments: Comments,
+    val comments: Comments?,
+    var attachment: Array<Attachment>
 )
 
 data class Comments(
     val count: UInt,
-    val canPost: Boolean,
-    val canClose: Boolean,
-    val canOpen: Boolean
+    val canPost: Boolean?,
+    val canClose: Boolean?,
+    val canOpen: Boolean?
 )
 
 object WallService {
