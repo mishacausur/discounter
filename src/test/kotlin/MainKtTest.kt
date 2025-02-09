@@ -70,7 +70,7 @@ class MainKtTest {
             addedPost.id,
             comment
         )
-        assertEquals(addedPost.comments.first(), addedComment.id)
+        assertEquals(addedPost.comments.last(), addedComment.id)
     }
 
     @Test(expected = PostNotFoundException::class)
