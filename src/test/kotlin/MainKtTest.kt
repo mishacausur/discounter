@@ -31,12 +31,7 @@ class MainKtTest {
             false,
             false,
             false,
-            Comments(
-                0u,
-                false,
-                false,
-                false
-            ),
+            emptyArray(),
             mockAttachment()
         )
     }
@@ -65,5 +60,59 @@ class MainKtTest {
         val newPost = makeMock()
         val update = WallService.updatePost(newPost)
         assertEquals(false, update)
+    }
+
+    @Test
+    fun testAddingComment() {
+        val addedPost = WallService.addPost(makeMock())
+        val comment = Comment( 1234u, 2u, "Love this")
+        val addedComment = WallService.createComment(
+            addedPost.id,
+            comment
+        )
+        assertEquals(addedPost.comments.last(), addedComment.id)
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun testFailedAddingComment() {
+        val comment = Comment( 1234u, 2u, "Love this")
+        val addedComment = WallService.createComment(
+            100500u,
+            comment
+        )
+    }
+
+    @Test
+    fun testReportComment() {
+        val addedPost = WallService.addPost(makeMock())
+        val comment = Comment( 999u, 2u, "Love this")
+        val addedComment = WallService.createComment(
+            addedPost.id,
+            comment
+        )
+        val report = WallService.report(999u, ReportReason.SPAM)
+        assertEquals(ReportReason.SPAM, report.reason)
+    }
+
+    @Test(expected = PostNotFoundException::class)
+    fun testFailedAddingReport() {
+        val addedPost = WallService.addPost(makeMock())
+        val comment = Comment( 333u, 2u, "Love this")
+        val addedComment = WallService.createComment(
+            addedPost.id,
+            comment
+        )
+        val report = WallService.report(999u, ReportReason.SPAM)
+    }
+
+    @Test(expected = ReasonIsNotProvided::class)
+    fun testFailedReasonReport() {
+        val addedPost = WallService.addPost(makeMock())
+        val comment = Comment( 333u, 2u, "Love this")
+        val addedComment = WallService.createComment(
+            addedPost.id,
+            comment
+        )
+        val report = WallService.report(333u, null)
     }
 }
