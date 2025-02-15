@@ -8,6 +8,7 @@ class MainKtTest {
     @Before
     fun resetWallService() {
         WallService.reset()
+        NoteService.clear()
     }
 
     fun mockAttachment(): Array<Attachment> {
