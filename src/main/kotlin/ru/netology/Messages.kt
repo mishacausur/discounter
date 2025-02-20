@@ -57,4 +57,10 @@ object MessageService {
             ?.takeLast(messagesCount.toInt())
             ?.onEach { it.isRead = true } ?: emptyList()
     }
+
+    fun reset() {
+        latsConversationId = 0u
+        lastMessageId = 0u
+        conversations.clear()
+    }
 }
