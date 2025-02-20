@@ -75,7 +75,7 @@ class BlankCollection<B : Blank> {
         return null
     }
 
-    fun clear() {
+    fun reset() {
         items.clear()
         id = 0u
     }
@@ -136,8 +136,8 @@ object NoteService {
         return comments.restore(id)
     }
 
-    fun clear() {
-        notes.clear()
-        comments.clear()
+    fun reset() {
+        notes.reset()
+        comments.reset()
     }
 }

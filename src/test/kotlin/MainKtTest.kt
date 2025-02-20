@@ -8,7 +8,8 @@ class MainKtTest {
     @Before
     fun resetWallService() {
         WallService.reset()
-        NoteService.clear()
+        NoteService.reset()
+        MessageService.reset()
     }
 
     fun mockAttachment(): Array<Attachment> {
@@ -211,5 +212,59 @@ class MainKtTest {
         val updatedNote = note.copy(title = "AWESOME EVEMT", text = "i forgot what i supposed to write")
         updatedNote.id = noteId
         NoteService.edit(updatedNote)
+    }
+
+    @Test
+    fun createConversation() {
+        val conversation = MessageService.createConversation(1u)
+        assertEquals(1u, conversation.personId)
+    }
+
+    @Test
+    fun sendMessage() {
+        MessageService.sendMessage(1u, "Hello, I'm using WhatsApp")
+        assertEquals(
+            "Hello, I'm using WhatsApp",
+            MessageService.getMessages(1u, 1u)[0].text)
+    }
+
+    @Test
+    fun testDeleteMessage() {
+        MessageService.sendMessage(1u, "Hello, I'm using WhatsApp")
+        MessageService.sendMessage(1u, "message to delete")
+        assertEquals(2, MessageService.getMessages(1u, 10u).count())
+        val conv = MessageService.getAllConversations().first()
+        val message = MessageService.getMessages(1u, 1u)[0]
+        MessageService.deleteMessage(message.id, conv.id)
+        assertEquals(1, MessageService.getMessages(1u, 1u).count())
+    }
+
+    @Test
+    fun testClearConversation() {
+        MessageService.sendMessage(1u, "Hello, I'm using WhatsApp")
+        assertEquals(1, MessageService.getAllConversations().size)
+
+        MessageService.clearConversation(1u)
+        assertEquals(0, MessageService.getAllConversations().size)
+    }
+
+    @Test
+    fun testGetLastMessages() {
+        MessageService.sendMessage(1u, "1")
+        MessageService.sendMessage(2u, "2")
+        val lastMessages = MessageService.getLastMessages()
+        assertEquals(2, lastMessages.size)
+        assertEquals("1", lastMessages[0])
+        assertEquals("2", lastMessages[1])
+    }
+
+    @Test
+    fun testGetUnreadConversations() {
+        MessageService.sendMessage(1u, "Hello, I'm using WhatsApp")
+        val unreadCount = MessageService.getInreadConversations()
+        assertEquals(1u, unreadCount)
+        MessageService.getMessages(1u, 1u)
+        val unreadCountAfter = MessageService.getInreadConversations()
+        assertEquals(0u, unreadCountAfter)
     }
 }
