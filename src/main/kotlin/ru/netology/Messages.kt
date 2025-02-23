@@ -1,12 +1,10 @@
 package ru.netology
 
-import javax.swing.table.TableStringConverter
-
 data class Message(
     val id: UInt,
     var text: String,
     var isRead: Boolean = false
-    ) {}
+    )
 
 data class Conversation(
     val id: UInt,
@@ -32,8 +30,11 @@ object MessageService {
     }
 
     fun deleteMessage(messageId: UInt, conversationId: UInt) {
-        conversations.find { it.id == conversationId }
-            ?.apply { messages.removeIf { it.id == messageId} }
+        conversations
+            .asSequence()
+            .find { it.id == conversationId }
+            ?.messages
+            ?.removeIf { it.id == messageId }
     }
 
     fun clearConversation(conversationId: UInt) {
@@ -43,19 +44,29 @@ object MessageService {
     fun getAllConversations(): List<Conversation> = conversations
 
     fun getLastMessages(): List<String> {
-        return conversations.map { it.messages.lastOrNull()?.text ?: "Нет сообщений" }
+        return conversations
+            .asSequence()
+            .map { it.messages.lastOrNull()?.text ?: "Нет сообщений" }
+            .toList()
     }
 
     fun getInreadConversations(): UInt {
-        return conversations.count { it.messages.any { !it.isRead }}.toUInt()
+        return conversations
+            .asSequence()
+            .filter { it.messages.any { !it.isRead }  }
+            .count()
+            .toUInt()
     }
 
     fun getMessages(personId: UInt, messagesCount: UInt): List<Message> {
         return conversations
             .find { it.personId == personId }
             ?.messages
-            ?.takeLast(messagesCount.toInt())
-            ?.onEach { it.isRead = true } ?: emptyList()
+            ?.asSequence()
+            ?.sortedByDescending { it.id }
+            ?.take(messagesCount.toInt())
+            ?.onEach { it.isRead = true }
+            ?.toList()?: emptyList()
     }
 
     fun reset() {
